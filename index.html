@@ -1,0 +1,43 @@
+<!DOCTYPE html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width">
+<script type="module" src="./calendar-view.js"></script>
+<calendar-view year=2022></calender-view>
+
+<style>
+calendar-view > div {
+  vertical-align: top;
+}
+@media (min-width: 550px) {
+  calendar-view > div {
+    display: inline-block;
+    width: 47vw;
+    margin: .5vw;
+  }
+}
+@media (min-width: 800px) {
+  calendar-view > div {
+    display: inline-block;
+    width: 31vw;
+    margin: .5vw;
+  }
+}
+@media (min-width: 1300px) {
+  calendar-view > div {
+    display: inline-block;
+    width: 23vw;
+    margin: .5vw;
+  }
+}
+calendar-view .days {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  margin: 0 0 .3em 0;
+}
+calendar-view .month {
+  font-size: 200%;
+  text-align: center;
+}
+calendar-view .days > div {
+  border: 1px solid gray;
+  text-align: center;
+}
+</style>
