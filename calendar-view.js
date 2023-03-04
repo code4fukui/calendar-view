@@ -9,10 +9,10 @@ const cr = (tag, parent) => {
 };
 
 class CalendarView extends HTMLElement {
-  constructor(year) {
+  constructor(year, startmonth = 1) {
     super();
     this.year = year || parseInt(this.getAttribute("year"));
-    for (let month = 1; month <= 12; month++) {
+    for (let month = startmonth; month <= 12; month++) {
       const mview = this.makeCalendar(this.year, month);
       this.appendChild(mview);
     }
