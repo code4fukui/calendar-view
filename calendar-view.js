@@ -9,15 +9,16 @@ const cr = (tag, parent) => {
 };
 
 class CalendarView extends HTMLElement {
-  constructor(year, startmonth = 1) {
+  constructor(year, startmonth = 1, showweek = false) {
     super();
     this.year = year || parseInt(this.getAttribute("year"));
+    showweek = showweek || this.getAttribute("showweek") == "true";
     for (let month = startmonth; month <= 12; month++) {
-      const mview = this.makeCalendar(this.year, month);
+      const mview = this.makeCalendar(this.year, month, showweek);
       this.appendChild(mview);
     }
   }
-  makeCalendar(year, month) {
+  makeCalendar(year, month, showweek) {
     const parent = cr("div");
     const mdiv = cr("div", parent);
     mdiv.className = "month";
@@ -25,6 +26,13 @@ class CalendarView extends HTMLElement {
     const div = cr("div", parent);
     div.className = "days";
     const day = new Day(year, month, 1);
+    if (showweek) {
+      const week = "日月火水木金土";
+      for (let i = 0; i < 7; i++) {
+        const d = cr("div", div);
+        d.textContent = week[i];
+      }
+    }
     for (let i = 0; i < day.getWeek() % 7; i++) {
       cr("div", div);
     }
